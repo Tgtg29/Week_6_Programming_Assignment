@@ -19,22 +19,48 @@ public class StatsCalculator {
 
     public double calculateMax() {
         int maxIndex = 0;
-        for (int i = 1; i < values.length; i++){
-            if (values[i] > values[maxIndex]) {
-                maxIndex = i;
+        double maxValue = 0.0;
+        for (int i = 0; i < sortedValues.length; i++){
+            if (sortedValues[i] > sortedValues[maxIndex]) {
+                maxValue = sortedValues[i];
             }
         }
-        return maxIndex;
+        return maxValue;
     }
 
     public double calculateMin(){
-        int minIndex = 0;
-        for (int i = 1; i < sortedValues.length; i++){
-            if (sortedValues[i] < sortedValues[minIndex]) {
-                minIndex = i;
-            }
+        double minValue = sortedValues[0];
+        return minValue;
+    }
+
+    public double calculateFirstQuartile(){
+        int temp = 0;
+        double firstQuart = 0.0;
+        if((sortedValues.length % 2) == 0){
+            temp = (sortedValues.length * 1/4);
+            firstQuart = (sortedValues[temp] + sortedValues[temp - 1]) / 2.0;
+        }else{
+            temp = (sortedValues.length * 1/4);
+            firstQuart = sortedValues[temp];
         }
-        return minIndex;
+        return firstQuart;
+    }
+
+    public double calculateThirdQuartile(){
+        int temp = 0;
+        double thirdQuart = 0.0;
+        if((sortedValues.length % 2) == 0){
+            temp = (sortedValues.length * 3/4);
+            if(temp % 3 == 0){
+                thirdQuart = sortedValues[temp];
+            }else{
+                thirdQuart = (sortedValues[temp] + sortedValues[temp + 1]) / 2.0;
+            }
+        }else{
+            temp = (sortedValues.length * 3/4);
+            thirdQuart = sortedValues[temp];
+        }
+        return thirdQuart;
     }
 
     public double calculateMedian(){
@@ -69,11 +95,23 @@ public class StatsCalculator {
     }
 
     public void print(){
-
+        System.out.print("Your data is:");
+        for(double vals : values){
+            System.out.print(" " + vals);
+        }
+        System.out.println();
     }
 
     public void printSorted(){
+        System.out.print("Your data is:");
+        for(double vals : sortedValues){
+            System.out.print(" " + vals);
+        }
+        System.out.println();
+    }
 
+    public void printFiveNumberSummary(){
+        System.out.println("The Five Number Summary is:\n" + "Minimum: " + calculateMin() + "\n" + "First Quartile: " + calculateFirstQuartile() + "\n" + "Median: " + calculateMedian() + "\n" + "Third Quartile: " + calculateThirdQuartile() + "\n" + "Maximum: " + calculateMax());
     }
 
 
