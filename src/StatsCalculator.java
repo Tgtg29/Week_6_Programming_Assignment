@@ -8,8 +8,8 @@ public class StatsCalculator {
        values = new double[20];
     }
 
-    public StatsCalculator(double[] val){
-        values = val;    }
+    public StatsCalculator(double[] val) {
+        values = val;
     }
 
     public void sortData(){
@@ -18,7 +18,7 @@ public class StatsCalculator {
     }
 
     public double calculateMax() {
-        double maxIndex = 0.0;
+        int maxIndex = 0;
         for (int i = 1; i < values.length; i++){
             if (values[i] > values[maxIndex]) {
                 maxIndex = i;
@@ -28,7 +28,7 @@ public class StatsCalculator {
     }
 
     public double calculateMin(){
-        double minIndex = 0.0;
+        int minIndex = 0;
         for (int i = 1; i < sortedValues.length; i++){
             if (sortedValues[i] < sortedValues[minIndex]) {
                 minIndex = i;
@@ -39,21 +39,23 @@ public class StatsCalculator {
 
     public double calculateMedian(){
         double median = 0.0;
+        int temp = 0;
         if(sortedValues.length % 2 != 0) {
-            double temp = (sortedValues.length / 2) + .5;
+            temp = (sortedValues.length / 2);
             median = sortedValues[temp];
         }else {
-            double temp = (sortedValues.length / 2);
-            median = (sortedValues[temp] + sortedValues[temp + 1.0])/2.0;
+            temp = (sortedValues.length / 2);
+            median = (sortedValues[temp] + sortedValues[temp - 1])/2.0; //-1 because lists start with index 0
         }
+        return median;
     }
 
     public double calculateSum(){
         double sum = 0.0;
         for (int i = 1; i < values.length; i++){
             sum += values[i];
-            return sum;
         }
+        return sum;
     }
 
     public double calculateMean(){
@@ -62,8 +64,16 @@ public class StatsCalculator {
         for (int i = 1; i < values.length; i++){
             sum += values[i];
             mean = sum/i;
-            return mean;
         }
+        return mean;
+    }
+
+    public void print(){
+
+    }
+
+    public void printSorted(){
+
     }
 
 
