@@ -38,10 +38,26 @@ public class StatsCalculator {
         double firstQuart = 0.0;
         if((sortedValues.length % 2) == 0){
             temp = (sortedValues.length * 1/4);
-            firstQuart = (sortedValues[temp] + sortedValues[temp - 1]) / 2.0;
+            if(temp % 2 == 0){
+                firstQuart = sortedValues[temp - 1];
+            }else if(temp % 3 == 0){
+                firstQuart = sortedValues[temp - 1];
+            }else if(temp % 5 == 0){
+                firstQuart = sortedValues[temp - 1];
+            }else if(temp % 7 == 0){
+                firstQuart = sortedValues[temp - 1];
+            }else if(temp % 9 ==0){
+                firstQuart = sortedValues[temp - 1];
+            }else{
+                firstQuart = (sortedValues[temp] + sortedValues[temp - 1]) / 2.0;
+            }
         }else{
             temp = (sortedValues.length * 1/4);
-            firstQuart = sortedValues[temp];
+            if(calculateMedian() % 2 != 0){
+                firstQuart = (sortedValues[temp] + sortedValues[temp - 1]) / 2.0;
+            }else{
+                firstQuart = sortedValues[temp];
+            }
         }
         return firstQuart;
     }
@@ -52,7 +68,7 @@ public class StatsCalculator {
         if((sortedValues.length % 2) == 0){
             temp = (sortedValues.length * 3/4);
             if(temp % 3 == 0){
-                thirdQuart = sortedValues[temp + 1];
+                thirdQuart = sortedValues[temp];
             }else{
                 thirdQuart = (sortedValues[temp] + sortedValues[temp + 1]) / 2.0;
             }
