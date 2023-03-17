@@ -52,7 +52,7 @@ public class StatsCalculator {
         if((sortedValues.length % 2) == 0){
             temp = (sortedValues.length * 3/4);
             if(temp % 3 == 0){
-                thirdQuart = sortedValues[temp];
+                thirdQuart = sortedValues[temp + 1];
             }else{
                 thirdQuart = (sortedValues[temp] + sortedValues[temp + 1]) / 2.0;
             }
